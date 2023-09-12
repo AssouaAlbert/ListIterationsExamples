@@ -101,8 +101,13 @@ public class Main {
 
     static <E> void add(List<E> list, E val, List<? extends E> newVals) {
         for (ListIterator<E> it = list.listIterator(); it.hasNext(); ) {
-            if (val == null ? it.next() == null : val.equals(it.next())) {
+            E next = it.next(); //Return the values in list;
+            if (val == null ? next == null : val.equals(next)) { //Check if list item equals to item to be removed from the list
+                //If val is null, check if the item.next() equals null and
+                // This line below remove the last item after calling it.next or it.previous
+                // In this case, null or val
                 it.remove();
+                // Adds the newList to the list, based on iterators postion (or after the removed val in the list)
                 for (E e : newVals)
                     it.add(e);
             }
